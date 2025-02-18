@@ -13,6 +13,7 @@ PLAYER_RADIUS = 20
 PLAYER_TURN_SPEED = 300  # degrees per second
 PLAYER_SPEED = 200  # pixels per second
 PLAYER_SHOOT_SPEED = 500  # pixels per second
+PLAYER_LIVES = 5
 PLAYER_SHOOT_COOLDOWN = 0.3 # seconds
 PLAYER_COLLISION_COOLDOWN = 2  # seconds
 PLAYER_RADIAL_SHOT_COOLDOWN = 10  # seconds

@@ -1,5 +1,5 @@
 from circleshape import CircleShape
-from constants import PLAYER_RADIUS, PLAYER_TURN_SPEED, PLAYER_SPEED, PLAYER_SHOOT_SPEED, PLAYER_SHOOT_COOLDOWN, PLAYER_COLLISION_COOLDOWN, PLAYER_RADIAL_SHOT_COOLDOWN, PLAYER_SPIRAL_SHOT_DURATION, PLAYER_SPIRAL_SHOT_COOLDOWN
+from constants import PLAYER_RADIUS, PLAYER_TURN_SPEED, PLAYER_SPEED, PLAYER_SHOOT_SPEED, PLAYER_SHOOT_COOLDOWN, PLAYER_SPIRAL_SHOT_MODIFIER, PLAYER_COLLISION_COOLDOWN, PLAYER_RADIAL_SHOT_COOLDOWN, PLAYER_SPIRAL_SHOT_DURATION, PLAYER_SPIRAL_SHOT_COOLDOWN, PLAYER_LIVES
 import pygame
 from shot import Shot
 
@@ -12,11 +12,11 @@ class Player(CircleShape):
         self.radial_shot_cooldown = 0
         self.__radial_shot_modifier = 30
         self.collision_cooldown = 0
-        self.lives = 5
+        self.lives = PLAYER_LIVES
         self.spiral_shot_cooldown = 0
         self.__spiral_shot_duration = 0
         self.__spiral_shot_value = 0
-        self.__spiral_shot_modifier = 16
+        self.__spiral_shot_modifier = PLAYER_SPIRAL_SHOT_MODIFIER
 
     def draw(self, screen):
         rate = 8
