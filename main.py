@@ -71,21 +71,25 @@ def main():
         for drawings in drawable:
             drawings.draw(screen)
         
-        # Render new frame
-        pygame.display.flip()
-
         # Check for Shot collisions
         for asteroid in asteroids:
             for shot in shots:
                 if shot.check_for_collision(asteroid):
-                    asteroid.kill()
+                    asteroid.split()
                     shot.kill()
 
         # Check for Player collisions
         for asteroid in asteroids:
-            if player.check_for_collision(asteroid):
-                print("Game over!")
-                return
+            if player.check_for_collision(asteroid) and player.collision_cooldown == 0:
+                player.collided()
+                player.lives -= 1
+                print(f"Player has collided with an asteroid! Lives left: {player.lives}")
+                if player.lives == 0:
+                    print("Game Over!")
+                    return
+
+        # Render new frame
+        pygame.display.flip()
 
 if __name__ == "__main__":
     main()

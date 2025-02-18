@@ -1,5 +1,5 @@
 from circleshape import CircleShape
-from constants import PLAYER_RADIUS, PLAYER_TURN_SPEED, PLAYER_SPEED, PLAYER_SHOOT_SPEED, PLAYER_SHOOT_COOLDOWN
+from constants import PLAYER_RADIUS, PLAYER_TURN_SPEED, PLAYER_SPEED, PLAYER_SHOOT_SPEED, PLAYER_SHOOT_COOLDOWN, PLAYER_COLLISION_COOLDOWN
 import pygame
 from shot import Shot
 
@@ -9,6 +9,8 @@ class Player(CircleShape):
         self.field = 0 
         self.rotation = 0
         self.fire_rate_cooldown = 0
+        self.collision_cooldown = 0
+        self.lives = 5
 
     def draw(self, screen):
         pygame.draw.polygon(screen, (255, 255, 255), self.triangle(), 2)
@@ -36,6 +38,10 @@ class Player(CircleShape):
             self.fire_rate_cooldown -= dt
             if self.fire_rate_cooldown < 0:
                 self.fire_rate_cooldown = 0
+        if self.collision_cooldown > 0:
+            self.collision_cooldown -= dt
+            if self.collision_cooldown < 0:
+                self.collision_cooldown = 0
 
     def shoot(self):
         shot = Shot(self.position.x, self.position.y, 2)
@@ -50,3 +56,6 @@ class Player(CircleShape):
         b = self.position - forward * self.radius - right
         c = self.position - forward * self.radius + right
         return [a, b, c]
+    
+    def collided(self):
+        self.collision_cooldown = PLAYER_COLLISION_COOLDOWN
