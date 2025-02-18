@@ -57,7 +57,7 @@ def main():
                 print("Exiting asteroids!")
                 return
 
-        # Update clock timing   
+        # Update clock timing and convert to seconds 
         dt = clock.tick(60)/1000
         
         # Black Background Screen
